@@ -6,7 +6,7 @@ const HomeReducer=(state=homeInitialState,action)=>{
         case FETCH_BOARD_DATA:
             return{
                 ...state,
-                loading:true
+                
             };
         case FETCH_BOARD_DATA_SUCCESS:
                 return{

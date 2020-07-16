@@ -7,39 +7,25 @@ import Loader from '../Modals/Loader/Loader';
 
 
  class Home extends Component {     
-        constructor(props) {
-            super(props)
         
-            this.state = {
-                 loading:false,
-                 boardData:[]
-            }
-        }
         
      componentDidMount(){
-         console.log("didmount");
-         this.props.fetchData();
-         setTimeout(() => {
-            console.log(this.props);
-         }, 3000);
          
-        //  this.setState({
-        //      loading:this.props.loading,
-        //      boardData:this.props.boardData
-
-        //  })
+         this.props.fetchData();
+         console.log(this.props);
+        
      }
 
     render() {
-        console.log("Render");
+        
         return (
             <>
-      {this.state.loading ? (
+      {this.props.loading ? (
         <Loader />
       ) : (
         <>
           <p className={styles.para}>Boards</p>
-          {this.state.boardData=== null&& (
+          {this.props.boardData=== null&& (
             <p className={styles.emptyMsg}>
               You haven't created any boards.Kindly click on the 'Create Board'
               button in the navigation bar to create a board.
@@ -47,7 +33,7 @@ import Loader from '../Modals/Loader/Loader';
           )}
 
           <div className={styles.ctrBoard}>
-            {this.state.boardData.map((x) => (
+            {this.props.boardData.map((x) => (
               <Link
                 className={styles.btnBoard}
                 to={{
@@ -55,7 +41,7 @@ import Loader from '../Modals/Loader/Loader';
                   state: {
                     id: x.id,
                     boardName: x.boardName,
-                    teamMembers: x.teamMembers,
+                    teamMembers: x.boardMembers,
                   },
                 }}
                 key={x.id}
@@ -73,8 +59,8 @@ import Loader from '../Modals/Loader/Loader';
 }
 const mapStateToProps=state=>{
     return{
-        boardData:state.boardData,
-        loading:state.loading
+        boardData:state.HomeReducer.boardData,
+        loading:state.HomeReducer.loading
     };
 
 }

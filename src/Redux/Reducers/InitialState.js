@@ -1,5 +1,5 @@
 const homeInitialState={
-    loading:false,
+    loading:true,
     boardData:[],
     error:''
 }
