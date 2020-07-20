@@ -1,10 +1,9 @@
 import db from '../FireStoreConfig';
-
 //Function to Add board details in Firestore
-export const addBoard=async(board)=>{
+export const addNewBoard=async(board)=>{
     try
     {
-        await db.collection('boardDetails').add(board);
+        await db.collection('boards').add(board);
         return true;
     }
     catch(error)

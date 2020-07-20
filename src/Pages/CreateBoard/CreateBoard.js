@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styles from "./CreateBoard.module.scss";
-import {addBoard} from '../../ReusableFunctions/ReusableFunctions';
+import {addNewBoard} from '../../ReusableFunctions/ReusableFunctions';
 
  class CreateBoard extends Component {
    constructor(props) {
@@ -15,8 +15,7 @@ import {addBoard} from '../../ReusableFunctions/ReusableFunctions';
    }
    
     //Function to saveBoard in Database
-    saveBoard=(e)=>{
-
+      createBoardHandler=(e)=>{
       e.preventDefault();
       const{boardName,boardMembers,boardType}=this.state
       const memberArray=boardMembers.split(',');
@@ -27,24 +26,21 @@ import {addBoard} from '../../ReusableFunctions/ReusableFunctions';
         boardType
         
       }
-      
-      addBoard(board)
+      //Function Defined in Common file.
+      addNewBoard(board)
       .then((created)=>{
         if(created){
-         
           this.props.history.push('/');
         }
       })
-      
-      
-    }
+   }
     render() {
         return (
             <>
                
                 <div className={styles.boardContainer}>
                   <p>Create a Board</p>
-                  <form onSubmit={this.saveBoard}>
+                  <form onSubmit={this.createBoardHandler}>
                     <label htmlFor="name">Enter a name for your Board</label>
                     <input
                       required
